@@ -1,0 +1,20 @@
+current directory: /Users/carolineguilherme/Projects/mdp-site/vendor/bundler/ruby/2.3.0/gems/eventmachine-1.2.5/ext/fastfilereader
+/Users/carolineguilherme/.rbenv/versions/2.3.1/bin/ruby -r ./siteconf20180331-4964-7tzbsk.rb extconf.rb
+creating Makefile
+
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /Users/carolineguilherme/Projects/mdp-site/vendor/bundler/ruby/2.3.0/extensions/x86_64-darwin-17/2.3.0-static/eventmachine-1.2.5/mkmf.log
+
+current directory: /Users/carolineguilherme/Projects/mdp-site/vendor/bundler/ruby/2.3.0/gems/eventmachine-1.2.5/ext/fastfilereader
+make "DESTDIR=" clean
+
+current directory: /Users/carolineguilherme/Projects/mdp-site/vendor/bundler/ruby/2.3.0/gems/eventmachine-1.2.5/ext/fastfilereader
+make "DESTDIR="
+compiling mapper.cpp
+compiling rubymain.cpp
+linking shared-object fastfilereaderext.bundle
+
+current directory: /Users/carolineguilherme/Projects/mdp-site/vendor/bundler/ruby/2.3.0/gems/eventmachine-1.2.5/ext/fastfilereader
+make "DESTDIR=" install
+/usr/local/bin/ginstall -c -m 0755 fastfilereaderext.bundle ./.gem.20180331-4964-1qlnvc7

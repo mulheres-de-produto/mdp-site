@@ -1,0 +1,16 @@
+current directory: /Users/carolineguilherme/Projects/mdp-site/vendor/bundler/ruby/2.3.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
+/Users/carolineguilherme/.rbenv/versions/2.3.1/bin/ruby -r ./siteconf20180331-4964-i00x4a.rb extconf.rb
+creating Makefile
+
+current directory: /Users/carolineguilherme/Projects/mdp-site/vendor/bundler/ruby/2.3.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
+make "DESTDIR=" clean
+
+current directory: /Users/carolineguilherme/Projects/mdp-site/vendor/bundler/ruby/2.3.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
+make "DESTDIR="
+compiling ryah_http_parser.c
+compiling ruby_http_parser.c
+linking shared-object ruby_http_parser.bundle
+
+current directory: /Users/carolineguilherme/Projects/mdp-site/vendor/bundler/ruby/2.3.0/gems/http_parser.rb-0.6.0/ext/ruby_http_parser
+make "DESTDIR=" install
+/usr/local/bin/ginstall -c -m 0755 ruby_http_parser.bundle ./.gem.20180331-4964-1yauabq
