@@ -11,52 +11,94 @@ layout: default
 
   {{ content }}
 
-
-
   {%- if site.posts.size > 0 -%}
-  <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
   
-  <div class="card-columns">
-    {%- for post in site.posts -%}
-    <div class="card">
-      {%- if site.post.feature_image -%}
-      <img class="card-img-top" src="{{ post.feature_image.path }}" alt="{{ post.feature_image.title }}">
-      {%- endif -%}
-      
-      {%- if site.post.feature_category -%}
-        {% for post in site.categories[page.category] %}
-          <a href="{{ post.url | absolute_url }}">
-            {{ post.title }}
-          </a>
-        {% endfor %}
-
-        <p>
-          <a class="badge badge-primary" href="{{ post.feature_category.url | relative_url }}">
-            {{ post.feature_category | escape }}
-          </a>
-        </p>
-      {%- endif -%}
-
-      <h5 class="card-title">
-        <a class="post-link" href="{{ post.url | relative_url }}">
-          {{ post.title | escape }}
-        </a>
-      </h5>
-      {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-      <small class="text-muted">{{ post.date | date: date_format }}</small>
-      {%- if site.show_excerpts -%}
-        <div class="card-body">
+  <div class="row">
+    {%- assign featured_posts = site.posts | where: "featured", "yes" -%}
+    {%- if featured_posts -%}
+    <div class="col-md-12">
+    {%- for featured in featured_posts -%}
+      <div class="card align-items-center flex-md-row mb-4 box-shadow h-md-250">
+        {% assign images = featured.images %} 
+        {%- if images -%}
+        <img class="card-img-right flex-auto d-none d-md-block" height="280vh" src="{{ featured.images.first.path | absolute_url }}" alt="{{ featured.images.first.title }}"> 
+        {%- endif -%}
+    
+        <div class="card-body d-flex flex-column align-items-start">
+          <h5 class="card-title">
+            <a href="{{ post.url | relative_url }}">
+              {{ featured.title | escape }}
+            </a>
+          </h5>
+          {%- assign date_format = site.minima.date_format -%}
+          <small class="text-muted">
+            {{ featured.date | date: date_format }}
+             - {% assign author = featured.author | first %}
+            <a href="{{ author.url | absolute_url }}" target="_blank">
+              {{ author.name | escape }}
+            </a>
+          </small>
+          {%- if site.show_excerpts -%}
           <p class="card-text">
-            {{ post.excerpt }}
+            {{ featured.excerpt }}
           </p>
+          {%- endif -%}
         </div>
-      {%- endif -%}
+      </div>
+      {%- endfor -%}
     </div>
-    {%- endfor -%}
+    {%- endif -%}
   </div>
 
-  <p class="rss-subscribe">subscribe
-    <a href="{{ " /feed.xml " | relative_url }}">via RSS</a>
-  </p>
+  <div class="row">
+  {%- assign posts = site.posts | where: "featured", "no" -%}
+  {%- if posts -%}
+    <div class="col-md-9">
+    {%- for post in posts -%}
+      <div class="card flex-row mb-4 border-0 box-shadow align-items-center">
+        <div class="card-body ">
+          {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+          <small class="text-muted">{{ post.date | date: date_format }}</small>
+          <h5 class="card-title">
+            <a class="post-link" href="{{ post.url | relative_url }}">
+              {{ post.title | escape }}
+            </a>
+          </h5>
+          {%- if site.show_excerpts -%}
+            <p class="card-text">
+              {{ post.excerpt }}
+            </p>
+          {%- endif -%}
+        </div>
+        {% assign images = post.images %} {%- if images -%}
+        <img class="card-img-left d-md-block col-md-4"  src="{{ post.images.first.path | absolute_url }}" alt="{{ post.images.first.title }}"> 
+        {%- endif -%}
+      
+      </div>
+    {%- endfor -%}
+    </div>
   {%- endif -%}
+  
+  {%- assign categories = site.categories -%} 
+  {%- if categories -%}
+  <div class="col mb-4">
+    <div class="card bg-light text-center">
+      <div class="card-body">
+        <div class="card-ttile">Assuntos que estamos falando</div>
+        {%- for category in categories -%}
+        <a href="{{ site.baseurl }}{{ category | first }}" class="badge badge-secondary ml-1">
+           {{ category | first }} 
+        </a>
+        {%- endfor -%}
+      </div>
+      <div class="card-footer text-muted">
+        Inscreva-se  <a href="{{ " /feed.xml " | relative_url }}">via RSS</a>
+      </div>
+    </div>
+  </div>
+  {%- endif -%}
+  
+</div>
+
+{%- endif -%}
 

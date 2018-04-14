@@ -34,6 +34,8 @@ minima:
 markdown: kramdown
 theme: minima
 
+show_excerpts: true
+
 # theme: minima
 plugins:
 

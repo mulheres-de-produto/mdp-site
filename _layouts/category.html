@@ -3,7 +3,32 @@ layout: page
 ---
 
 {% for post in site.categories[page.category] %}
-<a href="{{ post.url | absolute_url }}">
-  {{ post.title }}
-</a>
+  <div class="card flex-row mb-4 border-0 box-shadow align-items-center">
+    <div class="card-body ">
+      {%- assign date_format = site.minima.date_format -%}
+      <small class="text-muted">
+        {{ post.date | date: date_format }} 
+        {% assign author = post.author | first %}
+        {%- if author -%}
+        -
+        <a href="{{ author.url | absolute_url }}" target="_blank">
+          {{ author.name | escape }}
+        </a>
+        {%- endif -%}
+      </small>
+      <h5 class="card-title">
+        <a class="post-link" href="{{ post.url | relative_url }}">
+          {{ post.title | escape }}
+        </a>
+      </h5>
+      {%- if site.show_excerpts -%}
+      <p class="card-text">
+        {{ post.excerpt }}
+      </p>
+      {%- endif -%}
+    </div>
+    {% assign images = post.images %} {%- if images -%}
+    <img class="card-img-left d-md-block col-md-4" src="{{ post.images.first.path | absolute_url }}" alt="{{ post.images.first.title }}"> {%- endif -%}
+  
+  </div>
 {% endfor %}
